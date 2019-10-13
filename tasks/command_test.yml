@@ -1,0 +1,7 @@
+---
+- hosts: all 
+  tasks: 
+    - name: Prints hostname
+      command: hostname
+      register: host_name_command
+    - debug: var=host_name_command.stdout_lines

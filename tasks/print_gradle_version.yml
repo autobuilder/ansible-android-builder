@@ -1,0 +1,8 @@
+---
+- hosts: new_build_agents
+#  gather_facts: no
+  tasks: 
+    - name: print_gradle_version
+      shell: "gradle -v"
+      register: out
+    - debug: var=out.stdout_lines

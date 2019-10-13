@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks: 
+    - name: Install standard apt packages
+      apt: pkg={{ item }} state=installed
+      with_items: [ git, mc, tree, vim, ant, zip, unzip, smbclient ]
+#    - name: Verify git installation
+#      command: echo $'git --version'
+

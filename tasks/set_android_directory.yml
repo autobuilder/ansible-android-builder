@@ -1,0 +1,8 @@
+---
+- hosts: new_build_agents
+  sudo : true
+  tasks: 
+
+    - name: Create Android NDK directory
+      action: file path=/usr/lib/android/ndk state=directory owner=builder group=builder mode=0755 recurse=yes
+

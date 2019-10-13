@@ -1,0 +1,7 @@
+---
+- hosts: new_build_agents
+  tasks: 
+    - name: Verify_Java_installation
+      shell: "java -version"
+      register: out
+    - debug: var=out.stdout_lines

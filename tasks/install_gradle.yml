@@ -1,0 +1,10 @@
+---
+- hosts: new_build_agents
+  sudo : true
+  tasks: 
+  - name: Add Gradle repository to sources
+    action: apt_repository repo='ppa:cwchien/gradle'
+  - name: Update APT package cache
+    action: apt update_cache=yes
+  - name: Install Gradle 
+    action: apt pkg=gradle-2.13 state=latest install_recommends=yes

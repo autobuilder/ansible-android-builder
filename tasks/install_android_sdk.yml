@@ -1,0 +1,30 @@
+---
+- hosts: new_build_agents
+  tasks:
+
+  - name: "Download Android SDK"
+    get_url: url=http://dl.google.com/android/android-sdk_r24.3.4-linux.tgz dest=/usr/lib/android
+    register: sdk_file
+
+  - name: "Extracting Android SDK"
+    command: tar xzf {{sdk_file.dest}} -C /usr/lib/android/
+
+  - name: Rename Android SDK directory
+    command: mv /usr/lib/android/android-sdk-linux /usr/lib/android/sdk
+
+  - name: Removing Android SDK tar file
+    shell: "rm -rf {{sdk_file.dest}}"
+
+  - name: Create symbolik link from /home/builder to /usr/lib/android/sdk/
+    file: src=/usr/lib/android/sdk dest=/home/builder/sdk state=link owner=builder group=builder
+
+#  - name: Updating Android SDK
+#    shell:  "echo \"y\" | /usr/lib/android/sdk/tools/android update sdk -u -a -t {{ item }}"
+#    with_items: 
+#    - "tools"
+#    - "platform-tools"
+#    - "build-tools-23.0.1"
+#    - "build-tools-22.0.1"
+#    - "extra"
+#    register: out
+#  - debug: var=out.stdout_lines
