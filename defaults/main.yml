@@ -1,2 +1,44 @@
 ---
-# defaults file for ansible-android-builder/
+
+# defaults file for ansible-android-builder:
+# ------------------------------------------
+
+
+mandatory_yum_packages: [ git, mc, tree, vim, ant, zip, unzip, smbclient, dos2unix, jq, curl, samba, samba-client, samba-common, cifs-utils, python-software-properties ]
+mandatory_apt_packages: [ git, mc, tree, vim, ant, zip, unzip, smbclient, dos2unix, jq, curl, samba, samba-client, samba-common, cifs-utils, python-software-properties ]
+
+
+gradle_version: ""
+gradle_apt_repository: "ppa:cwchien/gradle"
+gradle_yum_repository: "{{ gradle_apt_repository }}"
+
+java_apt_repository: "ppa:webupd8team/java"
+java_yum_repository: "{{ java_apt_repository }}"
+
+user: "androbuilder"
+group: "androbuilder"
+
+
+android_parent_base_path: "/usr/share"
+android_base_path: "{{ android_parent_base_path }}/android"
+
+
+android_sdk_path: "{{ android_base_path }}/sdk"
+android_sdk_version: "24.3.4"
+android_sdk_full_file_name: "{{ android-sdk_r{{ sdk_version }}-linux.tgz }}"
+android_sdk_download_url: "https://dl.google.com/android/{{ android_sdk_full_file_name }}"
+
+
+android_ndk_path: "{{ android_base_path }}/ndk"
+android_ndk_version: "10"
+android_ndk_sub_version: "d"
+android_ndk_full_file_name: "android-ndk-r{{ ndk_version }}{{ ndk_sub_version }}-linux-x86_64.bin"
+android_ndk_download_url: "https://dl.google.com/android/ndk/{{ android_ndk_full_file_name }}"
+
+android_apk_tool_path: "{{ android_base_path }}/apk_tool"
+android_apk_tool_version: "2.4.0"
+android_apk_full_file_name: apktool_{{ android_apk_tool_version }}.jar
+android_apk_tool_download_url: "https://bitbucket.org/iBotPeaches/apktool/downloads/{{ android_apk_full_file_name }}"
+android_apk_tool_wrapper_script_download_url: "https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool"
+
+remove_lefovers: false

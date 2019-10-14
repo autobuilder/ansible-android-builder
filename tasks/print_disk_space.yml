@@ -1,7 +1,0 @@
----
-- hosts: new_build_agents
-  tasks: 
-    - name: show_disk_space
-      shell: "df -h | grep '/dev/sda1\\|/dev/sdb1' | awk -F' ' '{print $5}'"
-      register: show_disk_space
-    - debug: var=show_disk_space.stdout_lines

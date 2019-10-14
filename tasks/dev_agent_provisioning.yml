@@ -1,7 +1,0 @@
----
-- hosts: all 
-  tasks: 
-    - name: dev_agent_provisioning
-      command: hostname
-      register: host_name_command
-    - debug: var=host_name_command.stdout_lines

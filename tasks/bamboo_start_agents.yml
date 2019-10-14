@@ -1,7 +1,0 @@
----
-- hosts: new_build_agents
-  tasks: 
-    - name: Start Bamboo agents
-      shell: "./bamboo/bin/bamboo-agent.sh start"
-      register: out
-    - debug: var=out.stdout_lines

@@ -1,7 +1,0 @@
----
-- hosts: new_build_agents
-  tasks: 
-    - name: Print date
-      shell: "timedatectl | grep \"time\""
-      register: out
-    - debug: var=out.stdout_lines

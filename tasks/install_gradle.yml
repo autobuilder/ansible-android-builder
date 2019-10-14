@@ -1,10 +1,36 @@
 ---
-- hosts: new_build_agents
-  sudo : true
-  tasks: 
-  - name: Add Gradle repository to sources
-    action: apt_repository repo='ppa:cwchien/gradle'
-  - name: Update APT package cache
-    action: apt update_cache=yes
-  - name: Install Gradle 
-    action: apt pkg=gradle-2.13 state=latest install_recommends=yes
+
+
+- name: "Add Gradle repository to apt sources"
+  apt_repository:
+    repo: "{{ gradle_apt_repository }}"
+    state: present
+  when: ansible_distribution == 'Debian'
+
+
+- name: "Update APT package cache"
+  apt:
+    update_cache: yes
+  when: ansible_distribution == 'Debian'
+
+
+- name: "Install Gradle using apt"
+  apt:
+    name: gradle
+    state: latest 
+    install_recommends: yes
+  when: ansible_distribution == 'Debian'
+
+
+- name: "Add Gradle repository to yum sources"
+  yum_repository:
+    baseurl: "{{ gradle_yum_repository }}"
+    state: present
+  when: ansible_os_family == 'RedHat' or ansible_distribution == 'Centos'
+
+
+- name: "Install Gradle using yum"
+  yum:
+    name: "gradle"
+    state: latest
+  when: ansible_os_family == 'RedHat' or ansible_distribution == 'Centos'

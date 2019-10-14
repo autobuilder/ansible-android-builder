@@ -1,0 +1,15 @@
+---
+
+- name: "Install centos mandatory packages"
+  yum:
+    name: "{{ mandatory_yum_packages }}"
+    state: present
+  when: ansible_os_family == 'RedHat' or ansible_distribution == 'Centos'
+
+
+- name: "Install debian mandatory packages"
+  apt:
+    name: "{{ mandatory_apt_packages }}"
+    state: present
+  when: ansible_distribution == 'Debian'
+

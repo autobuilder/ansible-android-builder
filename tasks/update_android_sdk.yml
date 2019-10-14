@@ -1,0 +1,11 @@
+---
+
+
+- name: "Updating Android SDK"
+  shell:  "echo \"y\" | /usr/lib/android/sdk/tools/android update sdk -u -a -t {{ item }}"
+  with_items: 
+  - "tools"
+  - "platform-tools"
+  - "extra"
+  register: sdk_update_output
+

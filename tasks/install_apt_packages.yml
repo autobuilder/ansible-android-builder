@@ -1,8 +1,0 @@
----
-- hosts: all
-  sudo : true
-  tasks: 
-    - name: Install standard apt packages
-      apt: pkg={{ item }} state=installed
-      with_items: [ git, mc, tree, vim, ant, zip, unzip, smbclient, dos2unix, jq, curl, samba, samba-client, samba-common, cifs-utils ]
-

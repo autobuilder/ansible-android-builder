@@ -1,30 +1,47 @@
 ---
-- hosts: new_build_agents
-  tasks:
 
-  - name: "Download Android SDK"
-    get_url: url=http://dl.google.com/android/android-sdk_r24.3.4-linux.tgz dest=/usr/lib/android
-    register: sdk_file
+- name: "Create Android SDK directory on {{ android_sdk_path }}"
+  file:
+    path: "{{ android_sdk_path }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0755
+    recurse: yes
 
-  - name: "Extracting Android SDK"
-    command: tar xzf {{sdk_file.dest}} -C /usr/lib/android/
 
-  - name: Rename Android SDK directory
-    command: mv /usr/lib/android/android-sdk-linux /usr/lib/android/sdk
+- name: "Download Android SDK {{ android_sdk_download_url }}"
+  get_url: 
+    url: "{{ android_sdk_download_url }}"
+    dest: "{{ android_sdk_path }}"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: a+x
 
-  - name: Removing Android SDK tar file
-    shell: "rm -rf {{sdk_file.dest}}"
 
-  - name: Create symbolik link from /home/builder to /usr/lib/android/sdk/
-    file: src=/usr/lib/android/sdk dest=/home/builder/sdk state=link owner=builder group=builder
+- name: "Extracting Android SDK"
+  unarchive:
+    src: "{{ android_sdk_full_file_name }}"
+    dest: "{{ android_sdk_path }}"
+    owner: "{{ user }}"
+    group: "{{ group }}"
 
-#  - name: Updating Android SDK
-#    shell:  "echo \"y\" | /usr/lib/android/sdk/tools/android update sdk -u -a -t {{ item }}"
-#    with_items: 
-#    - "tools"
-#    - "platform-tools"
-#    - "build-tools-23.0.1"
-#    - "build-tools-22.0.1"
-#    - "extra"
-#    register: out
-#  - debug: var=out.stdout_lines
+
+- name: "Rename Android SDK directory to {{ android_sdk_path }}"
+  command: "mv {{ android_parent_base_path }}/android-sdk_r{{ sdk_version }}-linux {{ android_sdk_path }}"
+
+
+- name: "Removing Android SDK tar file"
+  shell: "rm -rf {{ android_sdk_path }}/{{ android_sdk_full_file_name }}"
+  when: remove_lefovers
+
+
+- name: "Create symbolik link from /home/{{ user }}/sdk to {{ android_sdk_path }}"
+  file: 
+    src: "{{ android_sdk_path }}"
+    dest: /home/{{ user }}/sdk
+    state: link 
+    owner: "{{ user }}"
+    group: "{{ group }}"
+
+

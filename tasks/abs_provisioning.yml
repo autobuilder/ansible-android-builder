@@ -1,7 +1,0 @@
----
-- hosts: all 
-  tasks: 
-    - name: ABS-Provisioning
-      command: hostname
-      register: out
-    - debug: var=out.stdout_lines

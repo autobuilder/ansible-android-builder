@@ -1,7 +1,0 @@
----
-- hosts: new_build_agents
-#  gather_facts: no
-  sudo : true
-  tasks: 
-  - name: Update APT package cache
-    action: apt update_cache=yes

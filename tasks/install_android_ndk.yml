@@ -1,22 +1,42 @@
 ---
-- hosts: new_build_agents
-  tasks:
 
-  - name: "Download Android NDK"
-    get_url: url=http://dl.google.com/android/ndk/android-ndk-r10d-linux-x86_64.bin dest=/usr/lib/android
-    register: ndk_file
 
-  - name: "chmod for Android NDK bin file"
-    command: chmod a+x {{ndk_file.dest}}
+- name: "Create Android NDK directory on {{ android_ndk_path }}"
+  file:
+    path: "{{ android_ndk_path }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0755
+    recurse: yes
 
-  - name: Execute Android NDK bin file
-    command: /usr/lib/android/./android-ndk-r10d-linux-x86_64.bin
 
-  - name: Rename Android NDK directory
-    command: mv /home/builder/android-ndk-r10d /usr/lib/android/ndk
+- name: "Download Android NDK {{ android_ndk_download_url }}"
+  get_url: 
+    url: "{{ android_ndk_download_url }}"
+    dest: "{{ android_ndk_path }}"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: a+x
 
-  - name: Removing Android NDK tar file
-    shell: "rm -rf {{ndk_file.dest}}"
 
-  - name: Create symbolik link from /home/builder/ndk to /usr/lib/android/ndk/
-    file: src=/usr/lib/android/ndk dest=/home/builder/ndk state=link owner=builder group=builder
+- name: "Execute Android NDK bin file on {{ android_ndk_path }}/{{ android_ndk_full_file_name }}"
+  command: "{{ android_ndk_path }}/{{ android_ndk_full_file_name }}"
+
+
+- name: "Rename Android NDK directory to {{ android_ndk_path }}"
+  command: "mv {{ android_parent_base_path }}/android-ndk-r{{ android_ndk_version }}{{ android_ndk_sub_version }} {{ android_ndk_path }}"
+
+
+- name: "Removing Android NDK tar file {{ android_ndk_path }}/{{ android_ndk_full_file_name }}"
+  shell: "rm -rf {{ android_ndk_path }}/{{ android_ndk_full_file_name }}"
+  when: remove_lefovers
+
+
+- name: Create symbolik link from /home/builder/ndk to /usr/lib/android/ndk/
+  file: 
+    src: "{{ android_ndk_path }}"
+    dest: /home/{{ user }}/ndk
+    state: link 
+    owner: "{{ user }}"
+    group: "{{ group }}"
