@@ -1,26 +1,19 @@
 ---
 
-
 - name: "include install_os_packages.yml"
   include: install_os_packages.yml
-
 
 - name: "include install_gradle.yml"
   include: install_gradle.yml
 
-
 - name: "include install_java.yml"
   include: install_java.yml
 
-
 - name: "include install_android_sdk.yml"
   include: install_android_ndk.yml
 
-
 - name: "include install_android_sdk.yml"
   include: install_android_ndk.yml
-
 
 - name: "include install_apk_tool.yml"
   include: install_apk_tool.yml
-

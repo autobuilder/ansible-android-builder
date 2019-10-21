@@ -2,20 +2,14 @@ galaxy_info:
   author: Lior Lifshitz
   description: Ansible role for install and initiate Android Builder.
   company: None
-  license: license (GPLv3)
-  min_ansible_version: 1.5
+  license: "license (Apache)"
+  min_ansible_version: 2.0
   platforms:
-  - name: Debian
-    - 8
-    - 9
-  - name: Centos
-    versions:
-    - 7
-  - name: Ubuntu
-    versions:
-    - 14.04
-    - 16.04
-    - 18.04
-  galaxy_tags: [ "android", "builder", "android-sdk", "android-ndk", "gradle", "apktool", "java", "build-tools"]
+    - name: EL
+      versions:
+        - 7
+    - name: Ubuntu
+      versions:
+        - bionic
+  galaxy_tags: [ "android", "builder", "android-sdk", "android-ndk", "gradle", "apktool", "java", "build-tools" ]
 dependencies: []
-

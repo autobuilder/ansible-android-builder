@@ -1,21 +1,18 @@
-
+---
 
 - name: "Add Java repository to sources"
   apt_repository:
     repo: "{{ java_apt_repository }}"
   when: ansible_distribution == 'Debian'
 
-
 - name: "Autoaccept license for Java"
   shell: echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
   when: ansible_distribution == 'Debian'
-
 
 - name: "Update APT package cache"
   apt:
     update_cache: yes
   when: ansible_distribution == 'Debian'
-
 
 - name: "Install Java"
   apt: 
@@ -24,7 +21,6 @@
     install_recommends: yes
   when: ansible_distribution == 'Debian'
 
-
 - name: "Set Java Env"
   apt:
     name: oracle-java8-set-default
@@ -32,17 +28,14 @@
     install_recommends: yes
   when: ansible_distribution == 'Debian'
 
-
 - name: "Add Java repository to yum sources"
   yum_repository:
     baseurl: "{{ java_yum_repository }}"
     state: present
   when: ansible_os_family == 'RedHat' or ansible_distribution == 'Centos'
 
-
 - name: "Install Java using yum"
   yum:
     name: oracle-java8-installer
     state: latest
   when: ansible_os_family == 'RedHat' or ansible_distribution == 'Centos'
-

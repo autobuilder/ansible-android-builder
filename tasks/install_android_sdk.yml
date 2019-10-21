@@ -9,7 +9,6 @@
     mode: 0755
     recurse: yes
 
-
 - name: "Download Android SDK {{ android_sdk_download_url }}"
   get_url: 
     url: "{{ android_sdk_download_url }}"
@@ -18,7 +17,6 @@
     group: "{{ group }}"
     mode: a+x
 
-
 - name: "Extracting Android SDK"
   unarchive:
     src: "{{ android_sdk_full_file_name }}"
@@ -26,15 +24,12 @@
     owner: "{{ user }}"
     group: "{{ group }}"
 
-
 - name: "Rename Android SDK directory to {{ android_sdk_path }}"
   command: "mv {{ android_parent_base_path }}/android-sdk_r{{ sdk_version }}-linux {{ android_sdk_path }}"
-
 
 - name: "Removing Android SDK tar file"
   shell: "rm -rf {{ android_sdk_path }}/{{ android_sdk_full_file_name }}"
   when: remove_lefovers
-
 
 - name: "Create symbolik link from /home/{{ user }}/sdk to {{ android_sdk_path }}"
   file: 
@@ -43,5 +38,3 @@
     state: link 
     owner: "{{ user }}"
     group: "{{ group }}"
-
-

@@ -1,6 +1,5 @@
 ---
 
-
 - name: "Create Android NDK directory on {{ android_ndk_path }}"
   file:
     path: "{{ android_ndk_path }}"
@@ -10,7 +9,6 @@
     mode: 0755
     recurse: yes
 
-
 - name: "Download Android NDK {{ android_ndk_download_url }}"
   get_url: 
     url: "{{ android_ndk_download_url }}"
@@ -19,19 +17,15 @@
     group: "{{ group }}"
     mode: a+x
 
-
 - name: "Execute Android NDK bin file on {{ android_ndk_path }}/{{ android_ndk_full_file_name }}"
   command: "{{ android_ndk_path }}/{{ android_ndk_full_file_name }}"
-
 
 - name: "Rename Android NDK directory to {{ android_ndk_path }}"
   command: "mv {{ android_parent_base_path }}/android-ndk-r{{ android_ndk_version }}{{ android_ndk_sub_version }} {{ android_ndk_path }}"
 
-
 - name: "Removing Android NDK tar file {{ android_ndk_path }}/{{ android_ndk_full_file_name }}"
   shell: "rm -rf {{ android_ndk_path }}/{{ android_ndk_full_file_name }}"
   when: remove_lefovers
-
 
 - name: Create symbolik link from /home/builder/ndk to /usr/lib/android/ndk/
   file: 
