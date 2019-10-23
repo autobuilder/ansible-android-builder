@@ -24,6 +24,7 @@
 - name: "Add Gradle repository to yum sources"
   yum_repository:
     name: gradle
+    description: "Gradle Yum repository"
     baseurl: "{{ gradle_yum_repository }}"
     state: present
   when: ansible_os_family == 'RedHat'
