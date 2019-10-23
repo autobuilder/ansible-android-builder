@@ -1,8 +1,11 @@
 ---
 
 - name: "Updating Android SDK"
-  shell: "echo \"y\" | ./android update sdk -u -a -t {{ sdk_component }}"
+  shell: |
+    set -o pipefail
+    echo "y" | ./android update sdk -u -a -t '{{ sdk_component }}'
   args:
+    executable: /bin/bash
     chdir: "{{ android_sdk_path }}/tools"
   with_items: "{{ sdk_components }}"
   loop_control:

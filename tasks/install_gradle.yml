@@ -21,15 +21,15 @@
     install_recommends: yes
   when: ansible_os_family == 'Debian'
 
-- name: "Add Gradle repository to yum sources"
-  yum_repository:
-    name: gradle
-    description: "Gradle Yum repository"
-    baseurl: "{{ gradle_yum_repository }}"
-    state: present
-  when: ansible_os_family == 'RedHat'
+# - name: "Add Gradle repository to yum sources"
+#   yum_repository:
+#     name: gradle
+#     description: "Gradle Yum repository"
+#     baseurl: "{{ gradle_yum_repository }}"
+#     state: present
+#   when: ansible_os_family == 'RedHat'
 
-- name: "Install Gradle using yum"
-  yum:
-    name: "gradle"
-  when: ansible_os_family == 'RedHat'
+# - name: "Install Gradle using yum"
+#   yum:
+#     name: "gradle"
+#   when: ansible_os_family == 'RedHat'

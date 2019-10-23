@@ -8,10 +8,8 @@ Ansible role for setup linux-based android buidler.
 Tested platforms are the below linux-based distros:
 
 ![Platform](https://img.shields.io/badge/platform-ubuntu-dd4814.svg?style=flat)
-![Platform](https://img.shields.io/badge/platform-centos-932279.svg?style=flat)
 
 * Ubuntu 18.04
-* CentOS 7
 
 ## Requirements
 
