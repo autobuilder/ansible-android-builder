@@ -1,9 +1,11 @@
 ---
 
 - name: "Updating Android SDK"
-  shell:  "echo \"y\" | /usr/lib/android/sdk/tools/android update sdk -u -a -t {{ item }}"
-  with_items: 
-  - "tools"
-  - "platform-tools"
-  - "extra"
+  shell: "echo \"y\" | ./android update sdk -u -a -t {{ sdk_component }}"
+  args:
+    chdir: "{{ android_sdk_path }}/tools"
+  with_items: "{{ sdk_components }}"
+  loop_control:
+    loop_var: sdk_component
+  changed_when: false
   register: sdk_update_output

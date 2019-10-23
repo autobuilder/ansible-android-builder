@@ -11,5 +11,13 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - bionic
-  galaxy_tags: [ "android", "builder", "android-sdk", "android-ndk", "gradle", "apktool", "java", "build-tools" ]
+  galaxy_tags:
+    - "android"
+    - "androidbuilder"
+    - "androidbuildtools"
+    - "androidndk"
+    - "androidsdk"
+    - "buildtools"
+    - "gradle"
+    - "apktool"
 dependencies: []

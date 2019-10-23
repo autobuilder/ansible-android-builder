@@ -1,2 +1,5 @@
 ---
-# handlers file for ansible-android-builder/
+
+- name: change_ndk_dir_name
+  shell: "mv {{ android_ndk_path }}/android-ndk-r{{ android_ndk_version }}{{ android_ndk_subversion }}/* {{ android_ndk_path }}/"
+  changed_when: false

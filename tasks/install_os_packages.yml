@@ -1,13 +1,19 @@
 ---
 
+- name: "Print ansible os family"
+  debug:
+    msg: "Running os family: {{ ansible_os_family }}"
+
 - name: "Install centos mandatory packages"
+  become: yes
   yum:
     name: "{{ mandatory_yum_packages }}"
     state: present
-  when: ansible_os_family == 'RedHat' or ansible_distribution == 'Centos'
+  when: ansible_os_family == 'RedHat'
 
 - name: "Install debian mandatory packages"
+  become: yes
   apt:
     name: "{{ mandatory_apt_packages }}"
     state: present
-  when: ansible_distribution == 'Debian'
+  when: ansible_os_family == 'Debian'

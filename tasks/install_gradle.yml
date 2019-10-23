@@ -1,31 +1,33 @@
 ---
 
+- name: "Print ansible_distribution"
+  debug:
+    msg: "Running os family: {{ ansible_os_family }}"
+
 - name: "Add Gradle repository to apt sources"
   apt_repository:
     repo: "{{ gradle_apt_repository }}"
     state: present
-  when: ansible_distribution == 'Debian'
+  when: ansible_os_family == 'Debian'
 
 - name: "Update APT package cache"
   apt:
     update_cache: yes
-  when: ansible_distribution == 'Debian'
+  when: ansible_os_family == 'Debian'
 
 - name: "Install Gradle using apt"
   apt:
     name: gradle
-    state: latest 
     install_recommends: yes
-  when: ansible_distribution == 'Debian'
+  when: ansible_os_family == 'Debian'
 
 - name: "Add Gradle repository to yum sources"
   yum_repository:
     baseurl: "{{ gradle_yum_repository }}"
     state: present
-  when: ansible_os_family == 'RedHat' or ansible_distribution == 'Centos'
+  when: ansible_os_family == 'RedHat'
 
 - name: "Install Gradle using yum"
   yum:
     name: "gradle"
-    state: latest
-  when: ansible_os_family == 'RedHat' or ansible_distribution == 'Centos'
+  when: ansible_os_family == 'RedHat'

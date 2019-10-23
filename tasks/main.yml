@@ -5,15 +5,25 @@
 
 - name: "include install_gradle.yml"
   include: install_gradle.yml
-
-- name: "include install_java.yml"
-  include: install_java.yml
-
-- name: "include install_android_sdk.yml"
-  include: install_android_ndk.yml
-
-- name: "include install_android_sdk.yml"
-  include: install_android_ndk.yml
+  tags:
+    - gradle
 
 - name: "include install_apk_tool.yml"
   include: install_apk_tool.yml
+  tags:
+    - apktool
+
+- name: "include install_android_ndk.yml"
+  include: install_android_ndk.yml
+  tags:
+    - ndk
+
+- name: "include install_android_sdk.yml"
+  include: install_android_sdk.yml
+  tags:
+    - sdk
+
+- name: "include update_android_sdk.yml"
+  include: update_android_sdk.yml
+  tags:
+    - updatesdk

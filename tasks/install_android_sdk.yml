@@ -1,5 +1,12 @@
 ---
 
+- name: "Remove Android SDK directory"
+  file:
+    path: "{{ android_sdk_path }}"
+    state: absent
+    owner: "{{ user }}"
+    group: "{{ group }}"
+
 - name: "Create Android SDK directory on {{ android_sdk_path }}"
   file:
     path: "{{ android_sdk_path }}"
@@ -10,31 +17,43 @@
     recurse: yes
 
 - name: "Download Android SDK {{ android_sdk_download_url }}"
-  get_url: 
+  get_url:
     url: "{{ android_sdk_download_url }}"
     dest: "{{ android_sdk_path }}"
     owner: "{{ user }}"
     group: "{{ group }}"
     mode: a+x
 
-- name: "Extracting Android SDK"
+- name: "Extracte Android SDK"
   unarchive:
-    src: "{{ android_sdk_full_file_name }}"
+    src: "{{ android_sdk_path }}/{{ android_sdk_full_file_name }}"
     dest: "{{ android_sdk_path }}"
     owner: "{{ user }}"
     group: "{{ group }}"
 
-- name: "Rename Android SDK directory to {{ android_sdk_path }}"
-  command: "mv {{ android_parent_base_path }}/android-sdk_r{{ sdk_version }}-linux {{ android_sdk_path }}"
+- name: change_sdk_dir_name
+  shell: "mv {{ android_sdk_path }}/android-sdk-linux/* {{ android_sdk_path }}/"
+  changed_when: false
 
-- name: "Removing Android SDK tar file"
-  shell: "rm -rf {{ android_sdk_path }}/{{ android_sdk_full_file_name }}"
+- name: "Remove Android SDK tar file {{ android_sdk_path }}/{{ android_sdk_full_file_name }}"
+  file:
+    path: "{{ android_sdk_path }}/{{ android_sdk_full_file_name }}"
+    state: absent
+    owner: "{{ user }}"
+    group: "{{ group }}"
   when: remove_lefovers
 
+- name: "Remove Android SDK temp directory"
+  file:
+    path: "{{ android_sdk_path }}/android-sdk-linux"
+    state: absent
+    owner: "{{ user }}"
+    group: "{{ group }}"
+
 - name: "Create symbolik link from /home/{{ user }}/sdk to {{ android_sdk_path }}"
-  file: 
+  file:
     src: "{{ android_sdk_path }}"
     dest: /home/{{ user }}/sdk
-    state: link 
+    state: link
     owner: "{{ user }}"
     group: "{{ group }}"

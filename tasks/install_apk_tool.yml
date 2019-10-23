@@ -1,6 +1,6 @@
 ---
 
-- name: "Create Android NDK directory on {{ android_apk_tool_path }}"
+- name: "Create APK-Tool directory on {{ android_apk_tool_path }}"
   file:
     path: "{{ android_apk_tool_path }}"
     state: directory
@@ -10,7 +10,7 @@
     recurse: yes
 
 - name: "Download APK-Tool {{ android_apk_tool_download_url }}"
-  get_url: 
+  get_url:
     url: "{{ android_apk_tool_download_url }}"
     dest: "{{ android_apk_tool_path }}/apktool.jar"
     owner: "{{ user }}"
@@ -18,17 +18,17 @@
     mode: a+x
 
 - name: "Download APK-Tool wrapper script {{ android_apk_tool_wrapper_script_download_url }}"
-  get_url: 
+  get_url:
     url: "{{ android_apk_tool_wrapper_script_download_url }}"
     dest: "{{ android_apk_tool_path }}/apktool"
     owner: "{{ user }}"
     group: "{{ group }}"
     mode: a+x
 
-- name: "Create symbolik link from /home/{{ user }}/apktool to {{ android_apk_tool_path }}"
-  file: 
+- name: "Create symbolik link from ~/apktool to {{ android_apk_tool_path }}"
+  file:
     src: "{{ android_apk_tool_path }}"
-    dest: /home/{{ user }}/apktool
-    state: link 
+    dest: "~/apktool"
+    state: link
     owner: "{{ user }}"
     group: "{{ group }}"
