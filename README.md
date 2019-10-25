@@ -29,7 +29,7 @@ Ansible role for setup linux-based android buidler.
 |:--------------------------|:---------------------------|:-----------------------------------|
 |use_custom_user_name       | ```false```                | Custom 'Builder' user              |
 |builder_user               | ```androbuilder```         | Builder user-name                  |
-|builder_group              | ```true```                 | Builder group-name                 |
+|builder_group              | ```androbuilder```         | Builder group-name                 |
 |install_gradle             | ```true```                 | Install [Gradle][gradle]           |
 |install_android_sdk        | ```true```                 | Install [Android-SDK][androidsdk]  |
 |install_android_ndk        | ```true```                 | Install [Android-NDK][androidndk]  |
