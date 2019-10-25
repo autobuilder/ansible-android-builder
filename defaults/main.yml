@@ -26,15 +26,15 @@ android_base_path: "{{ android_parent_base_path }}/android"
 
 install_android_sdk: true
 android_sdk_path: "{{ android_base_path }}/sdk"
-android_sdk_version: "24.3.4"
+android_sdk_version: "26.1.1"
 android_sdk_full_file_name: "android-sdk_r{{ android_sdk_version }}-linux.tgz"
 android_sdk_download_url: "https://dl.google.com/android/{{ android_sdk_full_file_name }}"
 sdk_components: [ "tools", "platform-tools", "extra" ]
 
 install_android_ndk: true
 android_ndk_path: "{{ android_base_path }}/ndk"
-android_ndk_version: "10"
-android_ndk_subversion: "d"
+android_ndk_version: "16"
+android_ndk_subversion: "b"
 android_ndk_full_file_name: "android-ndk-r{{ android_ndk_version }}{{ android_ndk_subversion }}-linux-x86_64.bin"
 android_ndk_download_url: "https://dl.google.com/android/ndk/{{ android_ndk_full_file_name }}"
 
