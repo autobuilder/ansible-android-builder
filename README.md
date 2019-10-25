@@ -19,12 +19,7 @@ Ansible role for setup linux-based android buidler.
 
 * Oracle-Java
 
----[ansiblelint]: https://docs.ansible.com/ansible-lint/
-[androidsdk]: https://developer.android.com/studio
-[androidndk]: https://developer.android.com/ndk
-[gradle]: https://gradle.org
-[apktool]: https://ibotpeaches.github.io/Apktool/
-
+---
 
 ### Variables:
 
