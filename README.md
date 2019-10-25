@@ -79,7 +79,7 @@ See the [LICENSE][license] file that accompanies this distribution for the full 
 [speedtestcli]: https://github.com/sivel/speedtest-cli
 [kitchenci]: https://kitchen.ci
 [apache2]: https://www.apache.org/licenses/LICENSE-2.0.html
-[license]: https://github.com/liorlifshitz/ansible-isp-speedtest/blob/master/LICENSE
+[license]: https://github.com/liorlifshitz/ansible-android-builder/blob/master/LICENSE
 [liorlifshitz]: https://github.com/liorlifshitz
 [ansiblelint]: https://docs.ansible.com/ansible-lint/
 [androidsdk]: https://developer.android.com/studio
