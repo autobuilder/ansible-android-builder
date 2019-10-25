@@ -25,15 +25,23 @@ Ansible role for setup linux-based android buidler.
 
 ### Variables:
 
-| Variable Name             | Default Vaule              | Description                        |
-|:--------------------------|:---------------------------|:-----------------------------------|
-|use_custom_user_name       | ```false```                | Custom 'Builder' user              |
-|builder_user               | ```androbuilder```         | Builder user-name                  |
-|builder_group              | ```androbuilder```         | Builder group-name                 |
-|install_gradle             | ```true```                 | Install [Gradle][gradle]           |
-|install_android_sdk        | ```true```                 | Install [Android-SDK][androidsdk]  |
-|install_android_ndk        | ```true```                 | Install [Android-NDK][androidndk]  |
-|install_apk_tool           | ```true```                 | Install [APK-Tool][apktool]        |
+| Variable Name             | Default Vaule                        | Description                                  |
+|:--------------------------|:-------------------------------------|:---------------------------------------------|
+|use_custom_user_name       | ```false```                          | Custom 'Builder' user                        |
+|builder_user               | ```androbuilder```                   | Builder user-name                            |
+|builder_group              | ```androbuilder```                   | Builder group-name                           |
+|install_gradle             | ```true```                           | Install [Gradle][gradle]                     |
+|install_apk_tool           | ```true```                           | Install [APK-Tool][apktool]                  |
+|install_android_sdk        | ```true```                           | Install [Android-SDK][androidsdk]            |
+|install_android_ndk        | ```true```                           | Install [Android-NDK][androidndk]            |
+|android_base_path          | ```"/usr/share/android"```           | Path to Android base directory               |
+|android_sdk_path           | ```"/usr/share/android/sdk"```       | Path to Android SDK base directory           |
+|android_sdk_version        | ```26.1.1```                         | Android SDK version                          |
+|android_ndk_path           | ```"/usr/share/android/ndk"```       | Path to Android NDK base directory           |
+|android_ndk_version        | ```"b"```                            | Android NDK version                          |
+|android_ndk_subversion     | ```"16"```                           | Android NDK sub-version                      |
+|android_apk_tool_path      | ```"/usr/share/android/apk_tool"```  | Path to Android APK_Tool base directory      |
+|android_apk_tool_version   | ```2.4.0```                          | Install [APK-Tool][apktool]                  |
 
 ---
 
