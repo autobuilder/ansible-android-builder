@@ -19,19 +19,24 @@ Ansible role for setup linux-based android buidler.
 
 * Oracle-Java
 
----
+---[ansiblelint]: https://docs.ansible.com/ansible-lint/
+[androidsdk]: https://developer.android.com/studio
+[androidndk]: https://developer.android.com/ndk
+[gradle]: https://gradle.org
+[apktool]: https://ibotpeaches.github.io/Apktool/
+
 
 ### Variables:
 
-| Variable Name             | Default Vaule              | Description               |
-|:--------------------------|:---------------------------|:--------------------------|
-|use_custom_user_name       | ```false```                | Excution date             |
-|builder_user               | ```androbuilder```         | Excution time             |
-|builder_group              | ```true```                 | Logs name                 |
-|install_gradle             | ```true```                 | Logs path                 |
-|install_android_sdk        | ```true```                 | Speedtest-cli output type |
-|install_android_ndk        | ```true```                 | Download  Speedtest-cli   |
-|install_apk_tool           | ```true```                 | Download  Speedtest-cli   |
+| Variable Name             | Default Vaule              | Description                        |
+|:--------------------------|:---------------------------|:-----------------------------------|
+|use_custom_user_name       | ```false```                | Custom 'Builder' user              |
+|builder_user               | ```androbuilder```         | Builder user-name                  |
+|builder_group              | ```true```                 | Builder group-name                 |
+|install_gradle             | ```true```                 | Install [Gradle][gradle]           |
+|install_android_sdk        | ```true```                 | Install [Android-SDK][androidsdk]  |
+|install_android_ndk        | ```true```                 | Install [Android-NDK][androidndk]  |
+|install_apk_tool           | ```true```                 | Install [APK-Tool][apktool]        |
 
 ---
 
@@ -72,3 +77,7 @@ See the [LICENSE][license] file that accompanies this distribution for the full 
 [license]: https://github.com/liorlifshitz/ansible-isp-speedtest/blob/master/LICENSE
 [liorlifshitz]: https://github.com/liorlifshitz
 [ansiblelint]: https://docs.ansible.com/ansible-lint/
+[androidsdk]: https://developer.android.com/studio
+[androidndk]: https://developer.android.com/ndk
+[gradle]: https://gradle.org
+[apktool]: https://ibotpeaches.github.io/Apktool/
